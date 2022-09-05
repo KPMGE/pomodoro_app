@@ -1,2 +1,3 @@
-# pomodoro_app
-Simple yet pretty pomodoro app made with flutter 
+# Pomodoro App
+
+This is just a simple, yet pretty, pomodoro application made with flutter.
