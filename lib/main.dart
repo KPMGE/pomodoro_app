@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/components/circular-indicator.dart';
+import 'package:pomodoro_app/components/play-pause-button.dart';
 
 void main() {
   runApp(const PomodoroApp());
@@ -10,11 +12,23 @@ class PomodoroApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Pomodoro app',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.purple,
       ),
-      home: const Text('hello'),
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Pomodoro app'),
+        ),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const [
+            CircularIndicator(percentage: 70.343423),
+            SizedBox(height: 10),
+            PlayPauseButton()
+          ],
+        ),
+      ),
     );
   }
 }
