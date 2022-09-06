@@ -17,9 +17,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: const Center(
         child: CircularIndicator(
-          initialHours: 0,
-          initialMinutes: 3,
-          initialSeconds: 59,
+          initialSeconds: 257,
         ),
       ),
     );

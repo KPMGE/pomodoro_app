@@ -4,12 +4,10 @@ import 'package:percent_indicator/percent_indicator.dart';
 import 'package:pomodoro_app/components/play-pause-button.dart';
 
 class CircularIndicator extends StatefulWidget {
-  final int initialHours, initialMinutes, initialSeconds;
+  final int initialSeconds;
 
   const CircularIndicator({
     super.key,
-    required this.initialHours,
-    required this.initialMinutes,
     required this.initialSeconds,
   });
 
@@ -26,34 +24,24 @@ class _CircularIndicatorState extends State<CircularIndicator> {
     super.dispose();
   }
 
-  double calculatePercentage(double total, double value) {
+  double calculatePercentage(int total, int value) {
     return value / total;
   }
 
-  // TODO: Refactor these doubles to ints, and create some helper methods
-  double calculateCurrentValue(
-      String remainSeconds, String remainMinutes, String remainHours) {
-    final hoursInSeconds = double.parse(remainHours) * 3600;
-    final minutesInSeconds = double.parse(remainMinutes) * 60;
-    return double.parse(remainSeconds) + hoursInSeconds + minutesInSeconds;
+  int calculateCurrentSeconds(
+      String hoursStr, String minutesStr, String seconds) {
+    final int hoursInSeconds = int.parse(hoursStr) * 3600;
+    final int minutesInSeconds = int.parse(minutesStr) * 60;
+    return hoursInSeconds + minutesInSeconds + int.parse(seconds);
   }
 
   @override
   Widget build(BuildContext context) {
-    final double hoursInSeconds = super.widget.initialHours * 3600;
-    final double minutesInSeconds = super.widget.initialMinutes * 60;
-    final double totalSeconds =
-        super.widget.initialSeconds + minutesInSeconds + hoursInSeconds;
-
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CustomTimer(
-          begin: Duration(
-            hours: super.widget.initialHours,
-            minutes: super.widget.initialMinutes,
-            seconds: super.widget.initialSeconds,
-          ),
+          begin: Duration(seconds: super.widget.initialSeconds),
           end: const Duration(),
           controller: _controller,
           builder: (remaining) {
@@ -62,12 +50,9 @@ class _CircularIndicatorState extends State<CircularIndicator> {
               lineWidth: 13.0,
               animation: false,
               percent: calculatePercentage(
-                  totalSeconds,
-                  calculateCurrentValue(
-                    remaining.seconds,
-                    remaining.minutes,
-                    remaining.hours,
-                  )),
+                  super.widget.initialSeconds,
+                  calculateCurrentSeconds(
+                      remaining.hours, remaining.minutes, remaining.seconds)),
               center: Text(
                 "${remaining.hours} : ${remaining.minutes} : ${remaining.seconds}",
                 style: const TextStyle(
