@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/components/navbar.dart';
-import 'package:pomodoro_app/pages/home.dart';
 
 void main() {
   runApp(const PomodoroApp());
@@ -11,12 +10,6 @@ class PomodoroApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Pomodoro app',
-      theme: ThemeData(
-        primarySwatch: Colors.purple,
-      ),
-      home: const NavBar(title: 'test'),
-    );
+    return const NavBar();
   }
 }

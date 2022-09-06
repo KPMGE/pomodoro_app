@@ -22,7 +22,7 @@ class _NavBarState extends State<NavBar> {
   List<TabItem> tabItems = List.of([
     TabItem(Icons.home, "Home", Colors.purple,
         labelStyle: const TextStyle(fontWeight: FontWeight.bold)),
-    TabItem(Icons.settings, "Settings", Colors.orange,
+    TabItem(Icons.settings, "Settings", Colors.teal,
         labelStyle: const TextStyle(fontWeight: FontWeight.bold)),
   ]);
 
@@ -38,7 +38,12 @@ class _NavBarState extends State<NavBar> {
     return GestureDetector(
       child: selectedPos == 0
           ? const HomeScreen()
-          : const Center(child: Text('settings page')),
+          : Scaffold(
+              body: const Center(child: Text('settings page')),
+              appBar: AppBar(
+                title: const Text('Pomodoro app'),
+              ),
+            ),
       onTap: () {
         if (_navigationController.value == tabItems.length - 1) {
           _navigationController.value = 0;
@@ -77,15 +82,21 @@ class _NavBarState extends State<NavBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.only(bottom: bottomNavBarHeight),
-            child: bodyContainer(),
-          ),
-          Align(alignment: Alignment.bottomCenter, child: bottomNav())
-        ],
+    return MaterialApp(
+      title: 'Pomodoro App',
+      theme: ThemeData(
+        primarySwatch: selectedPos == 0 ? Colors.purple : Colors.teal,
+      ),
+      home: Scaffold(
+        body: Stack(
+          children: <Widget>[
+            Padding(
+              padding: EdgeInsets.only(bottom: bottomNavBarHeight),
+              child: bodyContainer(),
+            ),
+            Align(alignment: Alignment.bottomCenter, child: bottomNav())
+          ],
+        ),
       ),
     );
   }
