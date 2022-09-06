@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class PlayPauseButton extends StatefulWidget {
-  const PlayPauseButton({super.key});
+  final void Function() onPlay;
+  final void Function() onPause;
+
+  const PlayPauseButton({
+    super.key,
+    required this.onPlay,
+    required this.onPause,
+  });
 
   @override
   State<PlayPauseButton> createState() => _PlayPauseButtonState();
@@ -18,9 +25,9 @@ class _PlayPauseButtonState extends State<PlayPauseButton> {
           _isPaused = !_isPaused;
         });
         if (_isPaused) {
-          print('button unpaused!');
+          super.widget.onPause();
         } else {
-          print('button paused!');
+          super.widget.onPlay();
         }
       },
       color: Colors.black54,
