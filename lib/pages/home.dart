@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/components/circular-indicator.dart';
+import 'package:pomodoro_app/components/circular_indicator.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

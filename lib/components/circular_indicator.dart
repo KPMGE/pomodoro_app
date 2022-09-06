@@ -1,7 +1,7 @@
+import 'package:percent_indicator/percent_indicator.dart';
+import 'package:pomodoro_app/components/play_pause_button.dart';
 import 'package:custom_timer/custom_timer.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/percent_indicator.dart';
-import 'package:pomodoro_app/components/play-pause-button.dart';
 
 class CircularIndicator extends StatefulWidget {
   final int initialSeconds;

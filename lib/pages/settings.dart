@@ -1,4 +1,3 @@
-import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {

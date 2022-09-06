@@ -62,7 +62,6 @@ class _NavBarState extends State<NavBar> {
       selectedCallback: (int? selectedPos) {
         setState(() {
           this.selectedPos = selectedPos ?? 0;
-          print(_navigationController.value);
         });
       },
     );
