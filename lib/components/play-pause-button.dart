@@ -33,8 +33,8 @@ class _PlayPauseButtonState extends State<PlayPauseButton> {
       color: Colors.black54,
       iconSize: 70,
       icon: Icon(_isPaused
-          ? Icons.pause_circle_filled_rounded
-          : Icons.play_circle_rounded),
+          ? Icons.play_circle_rounded
+          : Icons.pause_circle_filled_rounded),
     );
   }
 }
