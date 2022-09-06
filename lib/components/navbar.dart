@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:circular_bottom_navigation/circular_bottom_navigation.dart';
 import 'package:circular_bottom_navigation/tab_item.dart';
 import 'package:pomodoro_app/pages/home.dart';
+import 'package:pomodoro_app/pages/settings.dart';
 
 class NavBar extends StatefulWidget {
   const NavBar({
@@ -36,14 +37,7 @@ class _NavBarState extends State<NavBar> {
 
   Widget bodyContainer() {
     return GestureDetector(
-      child: selectedPos == 0
-          ? const HomeScreen()
-          : Scaffold(
-              body: const Center(child: Text('settings page')),
-              appBar: AppBar(
-                title: const Text('Pomodoro app'),
-              ),
-            ),
+      child: selectedPos == 0 ? const HomePage() : const SettingsPage(),
       onTap: () {
         if (_navigationController.value == tabItems.length - 1) {
           _navigationController.value = 0;
