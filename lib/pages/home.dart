@@ -15,9 +15,12 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int calculateTimeInSeconds(double value) {
-    double minutes = value.abs();
-    int seconds = (value - minutes).toInt();
-    int minutesInSeconds = (minutes * 60.0).toInt();
+    int minutes = value.abs().toInt();
+    // given the seconds, shift them 2 positions, multiplying by 100,
+    // then take the rounded value
+    int seconds = ((value - minutes) * 100).round();
+    int minutesInSeconds = minutes * 60;
+
     return minutesInSeconds + seconds;
   }
 
