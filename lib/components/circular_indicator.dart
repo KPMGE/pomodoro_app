@@ -25,6 +25,7 @@ class _CircularIndicatorState extends State<CircularIndicator> {
   }
 
   double calculatePercentage(int total, int value) {
+    if (total == 0) return 0;
     return value / total;
   }
 

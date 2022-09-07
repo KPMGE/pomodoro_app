@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatefulWidget {
-  const SettingsPage({super.key});
+  final void Function(double) onChangeTimer;
+
+  const SettingsPage({
+    super.key,
+    required this.onChangeTimer,
+  });
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  // SfRangeValues _values = const SfRangeValues(0, 60);
-
   double _value = 0.0;
 
   @override
@@ -29,7 +32,7 @@ class _SettingsPageState extends State<SettingsPage> {
                 borderRadius: const BorderRadius.all(Radius.circular(5))),
             child: Center(
                 child: Text(
-              _value.toStringAsFixed(2),
+              '${_value.toStringAsFixed(2)} min',
               style: const TextStyle(
                   fontWeight: FontWeight.bold, color: Colors.white),
             )),
@@ -39,6 +42,7 @@ class _SettingsPageState extends State<SettingsPage> {
             max: 60.0,
             value: _value,
             onChanged: (value) {
+              super.widget.onChangeTimer(value);
               setState(() {
                 _value = value;
               });
