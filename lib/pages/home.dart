@@ -1,25 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:pomodoro_app/components/circular-indicator.dart';
+import 'package:pomodoro_app/components/circular_indicator.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomePage extends StatefulWidget {
+  final double initialTimeInMinutes;
+
+  const HomePage({
+    super.key,
+    required this.initialTimeInMinutes,
+  });
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomePageState extends State<HomePage> {
+  int calculateTimeInSeconds(double value) {
+    int minutes = value.abs().toInt();
+    // given the seconds, shift them 2 positions, multiplying by 100,
+    // then take the rounded value
+    int seconds = ((value - minutes) * 100).round();
+    int minutesInSeconds = minutes * 60;
+
+    return minutesInSeconds + seconds;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pomodoro app'),
+        title: const Text('Pomodoro App'),
       ),
-      body: const Center(
+      body: Center(
         child: CircularIndicator(
-          initialHours: 0,
-          initialMinutes: 3,
-          initialSeconds: 59,
+          initialSeconds:
+              calculateTimeInSeconds(super.widget.initialTimeInMinutes),
         ),
       ),
     );
