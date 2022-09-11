@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/components/circular_indicator.dart';
-import 'package:pomodoro_app/components/time_select_notifier.dart';
+import 'package:pomodoro_app/components/time_select_model.dart';
 import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
