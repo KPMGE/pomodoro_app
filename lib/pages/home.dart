@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pomodoro_app/components/circular_indicator.dart';
+import 'package:pomodoro_app/components/time_select_notifier.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
-  final double initialTimeInMinutes;
-
-  const HomePage({
-    super.key,
-    required this.initialTimeInMinutes,
-  });
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -26,16 +23,17 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Pomodoro App'),
-      ),
-      body: Center(
-        child: CircularIndicator(
-          initialSeconds:
-              calculateTimeInSeconds(super.widget.initialTimeInMinutes),
+    return Consumer<TimeSelectModel>(builder: (context, timeSelectModel, _) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Pomodoro App'),
         ),
-      ),
-    );
+        body: Center(
+          child: CircularIndicator(
+            initialSeconds: calculateTimeInSeconds(timeSelectModel.time),
+          ),
+        ),
+      );
+    });
   }
 }

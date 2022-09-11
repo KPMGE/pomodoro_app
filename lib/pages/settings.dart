@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:pomodoro_app/components/time_select_notifier.dart';
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {
-  final void Function(double) onChangeTimer;
-
-  const SettingsPage({
-    super.key,
-    required this.onChangeTimer,
-  });
+  const SettingsPage({super.key});
 
   @override
   State<SettingsPage> createState() => _SettingsPageState();
@@ -42,7 +39,9 @@ class _SettingsPageState extends State<SettingsPage> {
             max: 60.0,
             value: _value,
             onChanged: (value) {
-              super.widget.onChangeTimer(value);
+              // calls the provider without rebuilding the screen
+              Provider.of<TimeSelectModel>(context, listen: false)
+                  .setTime(value);
               setState(() {
                 _value = value;
               });
