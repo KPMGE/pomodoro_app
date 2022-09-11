@@ -18,7 +18,6 @@ class NavBar extends StatefulWidget {
 class _NavBarState extends State<NavBar> {
   int selectedPos = 0;
   double bottomNavBarHeight = 60;
-  double timeChosen = 0.0;
 
   List<TabItem> tabItems = List.of([
     TabItem(Icons.home, "Home", Colors.purple,
@@ -35,17 +34,9 @@ class _NavBarState extends State<NavBar> {
     _navigationController = CircularBottomNavigationController(selectedPos);
   }
 
-  void timeHandler(double value) {
-    setState(() {
-      timeChosen = value;
-    });
-  }
-
   Widget bodyContainer() {
     return GestureDetector(
-      child: selectedPos == 0
-          ? HomePage(initialTimeInMinutes: timeChosen)
-          : SettingsPage(onChangeTimer: timeHandler),
+      child: selectedPos == 0 ? const HomePage() : const SettingsPage(),
       onTap: () {
         if (_navigationController.value == tabItems.length - 1) {
           _navigationController.value = 0;
